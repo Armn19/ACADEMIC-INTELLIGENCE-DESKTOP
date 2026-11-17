@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Academic Intelligence Desktop</title>
+
+<style>
+* { box-sizing: border-box; }
+
+body {
+    margin: 0;
+    background: #0d1117;
+    color: #e6edf3;
+    font-family: "Segoe UI", sans-serif;
+}
+
+.app { display: flex; min-height: 100vh; }
+
+.sidebar {
+    position: fixed;
+    inset: 0 auto 0 0;
+    width: 215px;
+    background: #111720;
+    border-right: 1px solid #252d38;
+    padding: 25px 12px;
+    z-index: 2;
+}
+
+.brand {
+    font-size: 15px;
+    font-weight: 700;
+    letter-spacing: 1px;
+    padding: 10px;
+    margin-bottom: 35px;
+}
+
+.brand span { color: #5798f7; }
+
+.section-label {
+    color: #718096;
+    font-size: 11px;
+    margin: 25px 10px 12px;
+    letter-spacing: 1.5px;
+}
+
+.nav-item {
+    display: block;
+    padding: 13px 10px;
+    color: #aab5c3;
+    border-radius: 7px;
+    cursor: pointer;
+    margin: 4px 0;
+    font-size: 12px;
+}
+
+.nav-item:hover,
+.nav-item.active {
+    background: #1e2c40;
+    color: #69a7ff;
+}
+
+.main {
+    margin-left: 215px;
+    flex: 1;
+    min-width: 0;
+}
+
+.topbar {
+    height: 64px;
+    padding: 0 32px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid #252d38;
+}
+
+.topbar span {
+    color: #8b98a9;
+    font-size: 12px;
+}
+
+.content { padding: 24px 32px; }
+
+h1 { font-size: 27px; margin: 0 0 10px; }
+
+.subtitle {
+    color: #8b98a9;
+    font-size: 14px;
+}
+
+.grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(180px, 1fr));
+    gap: 16px;
+    margin-top: 30px;
+}
+
+.card, .status {
+    background: #151d28;
+    border: 1px solid #273342;
+    border-radius: 10px;
+    padding: 22px;
+}
+
+.card { min-height: 140px; cursor: pointer; }
+.card:hover { border-color: #5798f7; }
+
+.card h3 { font-size: 15px; }
+.card p { color: #8b98a9; font-size: 12px; }
+
+.icon { color: #69a7ff; font-size: 21px; }
+
+.status { margin-top: 30px; }
+.online { color: #4cdb9b; }
+
+.browser-toolbar {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-top: 22px;
+    padding: 12px;
+    background: #151d28;
+    border: 1px solid #273342;
+    border-radius: 9px;
+}
+
+.browser-toolbar button {
+    background: #202b3a;
+    border: 1px solid #344357;
+    color: #e6edf3;
+    padding: 10px 13px;
+    border-radius: 6px;
+    cursor: pointer;
+}
+
+.browser-toolbar button:hover {
+    background: #294365;
+}
+
+.browser-toolbar input {
+    flex: 1;
+    min-width: 0;
+    background: #0d1117;
+    color: white;
+    border: 1px solid #344357;
+    padding: 11px;
+    border-radius: 6px;
+    outline: none;
+}
+
+.browser-toolbar input:focus {
+    border-color: #5798f7;
+}
+
+.browser-note {
+    color: #718096;
+    font-size: 12px;
+    margin-top: 12px;
+}
+
+@media(max-width: 950px) {
+    .grid { grid-template-columns: repeat(2, 1fr); }
+}
+
+@media(max-width: 650px) {
+    .sidebar { width: 165px; }
+    .main { margin-left: 165px; }
+    .grid { grid-template-columns: 1fr; }
+    .content { padding: 20px; }
+}
+</style>
+</head>
+
+<body>
+<div class="app">
+
+<aside class="sidebar">
+    <div class="brand">ACADEMIC <span>INTELLIGENCE</span></div>
+
+    <div class="section-label">WORKSPACE</div>
+    <div class="nav-item active" data-page="Overview">⌂ Overview</div>
+    <div class="nav-item" data-page="Browser Engine">◎ Browser Engine</div>
+    <div class="nav-item" data-page="Universal Inspection">◈ Universal Inspection</div>
+    <div class="nav-item" data-page="Interaction Engine">⇄ Interaction Engine</div>
+    <div class="nav-item" data-page="Intelligence Engine">✧ Intelligence Engine</div>
+    <div class="nav-item" data-page="Export Engine">⇩ Export Engine</div>
+
+    <div class="section-label">SYSTEM</div>
+    <div class="nav-item" data-page="Configuration">⚙ Configuration</div>
+</aside>
+
+<main class="main">
+    <div class="topbar">
+        <strong>Desktop Workspace</strong>
+        <span>VERSION 1.0.0</span>
+    </div>
+
+    <div class="content" id="content">
+        <h1>Overview</h1>
+        <p class="subtitle">
+            Welcome to Academic Intelligence Desktop.
+            Your academic workspace is ready.
+        </p>
+
+        <div class="grid">
+            <div class="card" data-page="Browser Engine">
+                <div class="icon">◎</div>
+                <h3>Browser Engine</h3>
+                <p>Browser integration and navigation.</p>
+            </div>
+
+            <div class="card" data-page="Universal Inspection">
+                <div class="icon">◈</div>
+                <h3>Universal Inspection</h3>
+                <p>Web structure and content inspection.</p>
+            </div>
+
+            <div class="card" data-page="Interaction Engine">
+                <div class="icon">⇄</div>
+                <h3>Interaction Engine</h3>
+                <p>Automated interaction capabilities.</p>
+            </div>
+
+            <div class="card" data-page="Intelligence Engine">
+                <div class="icon">✧</div>
+                <h3>Intelligence Engine</h3>
+                <p>Question recognition and analysis.</p>
+            </div>
+
+            <div class="card" data-page="Export Engine">
+                <div class="icon">⇩</div>
+                <h3>Export Engine</h3>
+                <p>Reports, JSON and execution logs.</p>
+            </div>
+
+            <div class="card" data-page="Configuration">
+                <div class="icon">⚙</div>
+                <h3>Configuration</h3>
+                <p>Application settings and preferences.</p>
+            </div>
+        </div>
+
+        <div class="status">
+            <strong>System status</strong>
+            <p class="online">● Desktop application initialized</p>
+            <p class="subtitle">Browser engine ready for integration.</p>
+        </div>
+    </div>
+</main>
+</div>
+
+<script>
+const content = document.getElementById("content");
+
+function openPage(page) {
+    document.querySelectorAll(".nav-item").forEach(item => {
+        item.classList.toggle("active", item.dataset.page === page);
+    });
+
+    if (page === "Browser Engine") {
+        window.academicApp.showBrowser();
+
+        content.innerHTML = `
+            <h1>Browser Engine</h1>
+            <p class="subtitle">
+                Chromium navigation environment.
+            </p>
+
+            <form class="browser-toolbar" id="browserForm">
+                <button type="button" id="back">←</button>
+                <button type="button" id="forward">→</button>
+                <button type="button" id="reload">⟳</button>
+
+                <input
+                    id="address"
+                    type="text"
+                    placeholder="Enter a website address..."
+                    value="https://www.google.com"
+                    autocomplete="off"
+                >
+
+                <button type="submit">Go</button>
+            </form>
+
+            <p class="browser-note" id="browserStatus">
+                Chromium browser initialized.
+            </p>
+        `;
+
+        document.getElementById("browserForm")
+            .addEventListener("submit", async event => {
+                event.preventDefault();
+
+                const address = document.getElementById("address");
+                const status = document.getElementById("browserStatus");
+
+                status.textContent = "Loading website...";
+
+                const result = await window.academicApp.navigate(address.value);
+
+                status.textContent = result.ok
+                    ? "Website loaded: " + result.url
+                    : "Navigation error: " + result.error;
+            });
+
+        document.getElementById("back").onclick =
+            () => window.academicApp.back();
+
+        document.getElementById("forward").onclick =
+            () => window.academicApp.forward();
+
+        document.getElementById("reload").onclick =
+            () => window.academicApp.reload();
+
+        return;
+    }
+
+    window.academicApp.hideBrowser();
+
+    if (page === "Overview") {
+        content.innerHTML = `
+            <h1>Overview</h1>
+            <p class="subtitle">
+                Academic Intelligence Desktop workspace.
+            </p>
+            <div class="status">
+                <strong>System status</strong>
+                <p class="online">● Application initialized</p>
+                <p class="subtitle">All modules ready for development.</p>
+            </div>
+        `;
+        return;
+    }
+
+    content.innerHTML = `
+        <h1>${page}</h1>
+        <p class="subtitle">Academic Intelligence Desktop</p>
+        <div class="status">
+            <strong>${page}</strong>
+            <p>Module selected. Functionality pending development.</p>
+        </div>
+    `;
+}
+
+document.querySelectorAll(".nav-item, .card").forEach(item => {
+    item.addEventListener("click", () => {
+        openPage(item.dataset.page);
+    });
+});
+
+</script>
+</body>
+</html>
